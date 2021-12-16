@@ -67,6 +67,14 @@ where   department_id= 100;
 
 -- TO_CHAR(날짜, '출력모양'):날짜->문자형으로 변환
 select  sysdate,
+        to_char(sysdate, 'YYYY-MM-DD'),
+        to_char(sysdate, 'YYYY/MM/DD HH24:MI:SS'),
         to_char(sysdate, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"')
 from    dual;
 
+-- NVL(컬럼명, null 일 때 값)/NVL2(컬럼명, null 아닐 때 값, null 일 때 값)
+select  first_name,
+        commission_pct,
+        nvl(commission_pct, 0),
+        nvl2(commission_pct, 100, 0)
+from    employees;
