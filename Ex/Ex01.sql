@@ -144,7 +144,7 @@ select  first_name, last_name, salary
 from    employees
 where   first_name like '_a%';
 
--- in연산자로 여러 조건 검사
+-- or연산자로 여러 조건 검사
 select *
 from    employees
 where   first_name = 'Neena' 
