@@ -222,6 +222,6 @@ from    employees
 where   salary>= 10000
 order by salary desc;
 
-select department_id, salary, first_name
-from employees
+select  department_id, salary, first_name
+from    employees
 order by department_id asc, salary desc;
