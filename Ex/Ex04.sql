@@ -36,7 +36,24 @@ select  employee_id, first_name, salary, job_id,
         end "Bonus"    
 from    employees;
 
+-- DECODE(컬럼명, 조건, 출력1,--- , else)
+select  employee_id, first_name ,salary, job_id,
+        decode(job_id, 'AC_ACCOUNT', salary+salary*0.1,
+                       'SA_REP', salary+salary*0.2,
+                       'ST_CLERK', salary+salary*0.3,
+               salary) as "realSalary"
+from    employees;
 
+-- 예제
+-- 직원의 이름, 부서, 팀을 출력 
+-- 팀은 코드로 결정하며 부서코드가 10~50 이면 ‘A-TEAM’ 60~100이면 ‘B-TEAM’  110~150이면 ‘C-TEAM’ 나머지는 ‘팀없음’ 으로 출력하세요
+select  first_name, department_id,
+        case when department_id>= 10 and department_id<= 50 then 'A-team'
+             when department_id>= 60 and department_id<= 100 then 'B-team'
+             when department_id>= 110 and department_id<= 150 then 'C-team'
+        else '팀없음'
+        end "팀"
+from    employees;
 
 
 
