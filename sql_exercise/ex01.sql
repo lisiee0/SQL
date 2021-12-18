@@ -21,20 +21,16 @@ having  count(*)> 3
 order by avg(salary) asc;
 ​
 
-​
+-- 3. ‘Public Accountant’의 직책(job_title)으로 과거에 근무한 적이 있는 모든 사원의 사번과 이름을 출력하시오. 
+--(현재 ‘Public Accountant’의 직책(job_title)으로 근무하는 사원은 고려 하지 않는다.) 
+-- 이름은 (first_name, last_name)으로 출력한다.
 
-​
-
-3. ‘Public Accountant’의 직책(job_title)으로 과거에 근무한 적이 있는 모든 사원의 사번과 이름을 출력하시오. 
-
- (현재 ‘Public Accountant’의 직책(job_title)으로 근무하는 사원은 고려 하지 않는다.) 
-
- 이름은 first_name, last_name을 아래의 실행결과와 같이 출력한다.
-
-​
-
-​
-
+select  e.employee_id "사번", first_name||' '||last_name "이름"
+from    employees e, job_history jh, jobs js
+where   e.employee_id= jh.employee_id
+and     jh.job_id= js.job_id
+and     e.job_id!= jh.job_id
+and     js.job_title= 'Public Accountant';
 ​
 
 4. 자신의 매니저보다 연봉(salary)를 많이 받는 직원들의 성(last_name)과 연봉(salary)를 출 력하시오.
