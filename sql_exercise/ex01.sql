@@ -33,9 +33,12 @@ and     e.job_id!= jh.job_id
 and     js.job_title= 'Public Accountant';
 ​
 
-4. 자신의 매니저보다 연봉(salary)를 많이 받는 직원들의 성(last_name)과 연봉(salary)를 출 력하시오.
+-- 4. 자신의 매니저보다 연봉(salary)를 많이 받는 직원들의 성(last_name)과 연봉(salary)를 출 력하시오.
 
-​
+select  first_name, last_name, manager_id, employee_id, salary 
+from    employees
+where   salary
+
 
 ​
 
