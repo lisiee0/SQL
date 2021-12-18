@@ -1,6 +1,11 @@
-1. 직책(Job Title)이 Sales Manager인 사원들의 입사년도와 입사년도(hire_date)별 평균 급여를 출력하시오. 
+-- 1. 직책(Job Title)이 Sales Manager인 사원들의 입사년도와 입사년도(hire_date)별 평균 급여를 출력하시오. 
+-- 출력 시 년도를 기준으로 오름차순 정렬하시오.
 
- 출력 시 년도를 기준으로 오름차순 정렬하시오.
+select  to_char(hire_date, 'YYYY') "입사년도", avg(salary) "평균급여"
+from    employees e, jobs j
+where   job_title= 'Sales Manager'
+group by to_char(hire_date, 'YYYY')
+order by to_char(hire_date, 'YYYY') asc;
 
 ​
 
