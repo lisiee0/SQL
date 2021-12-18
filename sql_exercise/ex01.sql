@@ -7,18 +7,18 @@ where   job_title= 'Sales Manager'
 group by to_char(hire_date, 'YYYY')
 order by to_char(hire_date, 'YYYY') asc;
 
-​
 
-​
+-- 2. 각 도시(city)에 있는 모든 부서 직원들의 평균급여를 조회하고자 한다. 
+-- 평균급여가 가장 낮은 도시부터 도시명(city)과 평균연봉, 해당 도시의 직원수를 출력하시오. 
+-- 단, 도시에 근무하는 직원이 3명 이하인 곳은 제외하고 조회하시오.
 
-​
-
-2. 각 도시(city)에 있는 모든 부서 직원들의 평균급여를 조회하고자 한다. 
-
- 평균급여가 가장 낮은 도시부터 도시명(city)과 평균연봉, 해당 도시의 직원수를 출력하시오. 
-
- 단, 도시에 근 무하는 직원이 10명 이상인 곳은 제외하고 조회하시오.
-
+select  city "도시명", avg(salary) "평균급여", count(*) "직원수"
+from    employees e, departments d, locations l
+where   e.department_id= d.department_id
+and     d.location_id= l.location_id
+group by city
+having  count(*)> 3
+order by avg(salary) asc;
 ​
 
 ​
