@@ -41,11 +41,15 @@ select  e.first_name, e.salary, e.department_id, d.department_id, d.department_n
 from    departments d, employees e
 where   d.department_id= e.department_id(+);
 
--- full outer join
+-- FULL OUTER JOIN
 select  *
 from    employees e full outer join departments d
 on      e.department_id= d.department_id;
 
-
+-- SELF JOIN
+select  e1.first_name||' '||e1.last_name "직원 이름", e1.employee_id, e1.phone_number, -- 직원 정보
+        e2.first_name||' '||e2.last_name "매니저 이름", e2.employee_id, e2.phone_number  -- 매니저 정보
+from    employees e1, employees e2
+where   e1.manager_id= e2.employee_id;
 
 
