@@ -66,5 +66,13 @@ where   salary in (select   salary
                    where    department_id= 110);
                    
 
---
+-- 예제
+-- 각 부서별로 최고급여를 받는 사원을 출력
+
+select  department_id, employee_id, first_name||' '||last_name, salary
+from    employees
+where   (department_id, salary) in (select  department_id, max(salary)
+                                    from    employees
+                                    group by department_id)
+order by department_id asc;
                    
