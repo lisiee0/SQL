@@ -29,27 +29,28 @@ select  e.employee_id "사번", first_name||' '||last_name "이름"
 from    employees e, job_history jh, jobs js
 where   e.employee_id= jh.employee_id
 and     jh.job_id= js.job_id
-and     e.job_id!= jh.job_id
+and     e.job_id<> jh.job_id
 and     js.job_title= 'Public Accountant';
 ​
 
--- 4. 자신의 매니저보다 연봉(salary)를 많이 받는 직원들의 성(last_name)과 연봉(salary)를 출 력하시오.
+-- 4. 자신의 매니저보다 연봉(salary)를 많이 받는 직원들의 성(last_name)과 연봉(salary)를 출력하시오.
 
-select  first_name, last_name, manager_id, employee_id, salary 
-from    employees
-where   salary
+select  first_name, last_name, salary 
+from    employees e1
+where   e1.salary> (select  e2.salary
+                    from    employees e2
+                    where   e1.manager_id= e2.employee_id);
 
 
-​
 
-​
+-- 5. 2007년에 입사(hire_date)한 직원들의 사번(employee_id), 이름(first_name), 성(last_name), 
+-- 부서명(department_name)을 조회합니다. 
+-- 이때, 부서에 배치되지 않은 직원의 경우, ‘<Not Assigned>’로 출력하시오.
 
-5. 2007년에 입사(hire_date)한 직원들의 사번(employee_id), 이름(first_name), 성(last_name), 
-
- 부서명(department_name)을 조회합니다. 
-
- 이때, 부서에 배치되지 않은 직원의 경우, ‘<Not Assigned>’로 출력하시오.
-
+select  e.employee_id, first_name||' '||last_name, nvl(d.department_name, 'Not Assigned')
+from    employees e, departments d
+where   e.department_id= d.department_id(+)
+and     to_char(e.hire_date, 'YYYY')= '2007';
 ​
 
 ​
