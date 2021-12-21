@@ -49,6 +49,12 @@ where   department_id= 110;
 -- 부서번호 110인 직원의 급여를 알 경우.
 select  employee_id, first_name, salary, department_id
 from    employees
+where   salary= 12008
+or     salary= 8300;
+
+-- 다른 표현
+select  employee_id, first_name, salary, department_id
+from    employees
 where   salary in (12008, 8300);
 
 
@@ -59,5 +65,6 @@ where   salary in (select   salary
                    from     employees
                    where    department_id= 110);
                    
-                   
+
+--
                    
