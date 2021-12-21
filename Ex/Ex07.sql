@@ -102,3 +102,37 @@ where   salary >all (select   salary
   and     salary> 8300  와 같은 표현*/
                    
                    
+/***************************************
+*    조건절에서 비교, 테이블에서 조인
+***************************************/
+
+-- 각 부서별로 최고급여를 받는 사원을 출력 (조건절에서 비교)
+-- 01. 각 부서별 최고 급여 리스트
+select  department_id, max(salary)
+from    employees
+group by department_id;
+
+-- 02. 직원리스트에서 부서별 최고급여를 받는 사람
+select  first_name, department_id, salary
+from    employees
+where   salary= 11000
+and     department_id= 30;
+
+-- 03. 쿼리문 완성
+select  first_name, department_id, salary
+from    employees
+where   (department_id, salary) in (select  department_id, max(salary)
+                                    from    employees
+                                    group by department_id);
+
+
+-- 각 부서별로 최고급여를 받는 사원을 출력 (테이블에서 조인)
+select  e.department_id, e.first_name, e.salary
+from    employees e, (select  department_id, max(salary) salary
+                      from    employees
+                      group by department_id) s
+where   e.department_id= s.department_id
+and     e.salary= s.salary;
+
+
+
