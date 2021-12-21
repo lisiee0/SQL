@@ -75,4 +75,30 @@ where   (department_id, salary) in (select  department_id, max(salary)
                                     from    employees
                                     group by department_id)
 order by department_id asc;
+
+-- ANY 연산자
+-- 부서번호가 110인 직원의 급여보다 큰 모든 직원의 사번, 이름, 급여 출력
+
+select  employee_id, first_name, salary, department_id
+from    employees
+where   salary >any (select   salary
+                     from     employees
+                     where    department_id= 110);
+/*where   salary> 12008
+  or      salary> 8300  와 같은 표현*/
+  
+
+
+-- ALL 연산자
+-- 부서번호가 110인 직원의 급여 보다 큰 모든 직원의 사번, 이름, 급여를 출력
+-- and --> 12008보다 큰
+
+select  employee_id, first_name, salary, department_id
+from    employees
+where   salary >all (select   salary
+                     from     employees
+                     where    department_id= 110);
+/*where   salary> 12008
+  and     salary> 8300  와 같은 표현*/
+                   
                    
