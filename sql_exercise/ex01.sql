@@ -35,43 +35,37 @@ and     js.job_title= 'Public Accountant';
 
 -- 4. 자신의 매니저보다 연봉(salary)를 많이 받는 직원들의 성(last_name)과 연봉(salary)를 출력하시오.
 
-select  first_name, last_name, salary 
+select  first_name||' '||last_name "이름", salary "급여" 
 from    employees e1
 where   e1.salary> (select  e2.salary
                     from    employees e2
                     where   e1.manager_id= e2.employee_id);
 
 
-
 -- 5. 2007년에 입사(hire_date)한 직원들의 사번(employee_id), 이름(first_name), 성(last_name), 
 -- 부서명(department_name)을 조회합니다. 
 -- 이때, 부서에 배치되지 않은 직원의 경우, ‘<Not Assigned>’로 출력하시오.
 
-select  e.employee_id, first_name||' '||last_name, nvl(d.department_name, 'Not Assigned')
+select  e.employee_id "사번", first_name||' '||last_name "이름",
+        nvl(d.department_name, 'Not Assigned') "부서명"
 from    employees e, departments d
 where   e.department_id= d.department_id(+)
 and     to_char(e.hire_date, 'YYYY')= '2007';
 ​
 
-​
+-- 6. 업무명(job_title)이 ‘Sales Representative’인 직원 중에서 연봉(salary)이 9,000이상, 10,000 이하인 
+-- 직원들의 이름(first_name), 성(last_name)과 연봉(salary)를 출력하시오
+
+select  first_name||' '||last_name "이름", salary "급여"
+from    employees e, jobs j
+where   e.job_id= j.job_id
+and     j.job_title= 'Sales Representative'
+and     salary between 9000 and 10000;
 
 ​
-
-6. 업무명(job_title)이 ‘Sales Representative’인 직원 중에서 연봉(salary)이 9,000이상, 10,000 이하인 
-
- 직원들의 이름(first_name), 성(last_name)과 연봉(salary)를 출력하시오
-
-​
-
-​
-
-​
-
-7. 부서별로 가장 적은 급여를 받고 있는 직원의 이름, 부서이름, 급여를 출력하시오. 
-
- 이름은 last_name만 출력하며, 부서이름으로 오름차순 정렬하고, 
-
- 부서가 같은 경우 이름을 기준 으로 오름차순 정렬하여 출력합니다.
+-- 7. 부서별로 가장 적은 급여를 받고 있는 직원의 이름, 부서이름, 급여를 출력하시오. 
+-- 이름은 last_name만 출력하며, 부서이름으로 오름차순 정렬하고, 
+-- 부서가 같은 경우 이름을 기준 으로 오름차순 정렬하여 출력합니다.
 
 ​
 
