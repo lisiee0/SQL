@@ -76,14 +76,15 @@ from    (select  rownum rno,
 where   r.rno between 3 and 7;        
 
 
+
 -- 예제+
--- 07년에 입사한 직원중 급여가 많은 직원중 3에서 7등의 이름, 급여, 입사일, 부서명 출력 
+-- 07년에 입사한 직원중 급여가 많은 순위 3등에서 7등의 이름, 급여, 입사일, 부서명 출력 
 select  r.rno, first_name, salary, hire_date, d.department_name
 from    (select  rownum rno,
                  first_name, salary, hire_date, department_id
-         from    (select  to_char(hire_date, 'YYYY'), first_name, salary, hire_date, department_id
+         from    (select  to_char(hire_date, 'YY'), first_name, salary, hire_date, department_id
                   from    employees
-                  where   to_char(hire_date, 'YYYY')= 2007
+                  where   to_char(hire_date, 'YY')= 07
                   order by salary desc) o) r,
         departments d          
 where   r.department_id= d.department_id(+)
