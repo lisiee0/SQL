@@ -73,7 +73,7 @@ and     e.salary> s.salary;
 
 
 -- 문제 8        
-select  r.rno, employee_id, first_name, salary, hire_date
+select  r.rno "입사순위", employee_id "직원번호", first_name "이름", salary "급여", hire_date "입사일"
 from    (select  rownum rno,
                  employee_id, first_name, salary, hire_date
          from    (select  employee_id, first_name, salary, hire_date
