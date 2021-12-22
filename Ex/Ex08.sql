@@ -79,7 +79,7 @@ where   r.rno between 3 and 7;
 
 -- 예제+
 -- 07년에 입사한 직원중 급여가 많은 순위 3등에서 7등의 이름, 급여, 입사일, 부서명 출력 
-select  r.rno, first_name, salary, hire_date, d.department_name
+select  r.rno, r.first_name, r.salary, r.hire_date, d.department_name
 from    (select  rownum rno,
                  first_name, salary, hire_date, department_id
          from    (select  to_char(hire_date, 'YY'), first_name, salary, hire_date, department_id
@@ -88,8 +88,7 @@ from    (select  rownum rno,
                   order by salary desc) o) r,
         departments d          
 where   r.department_id= d.department_id(+)
-and     r.rno between 3 and 7
-order by r.rno asc;
+and     r.rno between 3 and 7;
 
 
 
