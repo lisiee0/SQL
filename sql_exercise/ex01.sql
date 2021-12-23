@@ -67,11 +67,16 @@ and     salary between 9000 and 10000;
 -- 이름은 last_name만 출력하며, 부서이름으로 오름차순 정렬하고, 
 -- 부서가 같은 경우 이름을 기준 으로 오름차순 정렬하여 출력합니다.
 
+select  last_name "이름", d.department_name "부서명", salary "급여"
+from    employees e, departments d
+where   e.department_id= d.department_id
+and     (e.department_id, salary) in (select  department_id, min(salary)
+                                      from    employees
+                                      group by department_id)
+order by department_name asc, last_name asc;                
 ​
 
-​
-
-​
+​/*
 
 8. EMPLOYEES 테이블에서 급여를 많이 받는 순서대로 조회했을 때 결과처럼 6번째부터 10 번째까지 
 
@@ -218,4 +223,7 @@ and     salary between 9000 and 10000;
  직원명 (first_name), 급여(salary), 커미션(commission_pct) 정보를 조회하시오. 
 
  출력결과는 커미션 을 많이 받는 순서로 출력하되 동일한 커미션에 대해서는 급여가 높은 직원이 먼저 출력 되게 한다.
-[출처] [오라클 SQL] 오라클 실전 연습문제 모음집 (오라클 hr 계정) 난이도 초중 - SQL DEVELOPER|작성자 Yoon
+
+
+
+*/
