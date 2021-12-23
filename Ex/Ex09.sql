@@ -56,6 +56,47 @@ insert into author
 values(3, '기안84', '웹툰 작가');
 
 
+-- 작가 테이블 정보 수정 UPDATE
+update  author
+set     author_name= '김경리',
+        author_desc= '토지작가'
+where   author_id= 1;
+
+-- 작가 테이블 정보 삭제 DELETE
+delete from author
+where       author_id= 1;
+
+-- SEQUENCE 시퀀스 (번호표)
+create sequence seq_author_id
+increment by 1
+start with 1
+nocache;
+
+insert into author
+values(seq_author_id.nextval, '박경리', '토지작가');
+
+insert into author
+values(seq_author_id.nextval, '이문열', '삼국지 작가');
+
+insert into author
+values(seq_author_id.nextval, '강풀', '웹툰작가');
+
+-- 시퀀스 조회
+select * from user_sequences;
+
+-- 현재 시퀀스 조회
+select  seq_author_id.currval
+from    dual;
+
+-- 다음 시퀀스 조회
+select  seq_author_id.nextval
+from    dual;
+
+-- 시퀀스 삭제
+drop sequence seq_author_id;
+
+
+
 
 select * from book;
 select * from author;
