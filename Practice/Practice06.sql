@@ -87,9 +87,11 @@ update  author
 set     author_desc= '서울특별시'
 where   author_id= 5;
 
+/*
 -- author 테이블에서 기안84 데이터를 삭제
 delete from author
-where       author_id= 4;
+where       author_id= 4; -- 사용중인 데이터이기 때문에 삭제불가(오류)
+*/
 
 -- 최종출력
 select  book_id "책번호", title "제목", pubs "출판사",
@@ -99,4 +101,5 @@ from    book b, author a
 where   b.author_id= a.author_id;
 
 
+commit;
 
