@@ -40,11 +40,30 @@ and     e1.department_id= d.department_id(+);
 
 
 -- 문제 5
-/*
-문제5.
-2005년 이후 입사한 직원중에 입사일이 11번째에서 20번째의 직원의 
-사번, 이름, 부서명, 급여, 입사일을 입사일 순서로 출력하세요
-*/
+select  r.rno "입사일순서", employee_id "사번", first_name "이름",
+        d.department_name "부서명", salary "급여", hire_date "입사일"
+from    (select  rownum rno,
+                 employee_id, first_name, salary, hire_date, department_id
+         from    (select  employee_id, first_name, salary, hire_date, department_id
+                  from    employees
+                  where   hire_date> '2004/12/31'
+                  order by hire_date asc) o) r,
+        departments d
+where   r.department_id= d.department_id
+and     r.rno between 11 and 20
+order by r.rno;
 
+
+-- 문제 6
+select  first_name||' '||last_name "이름", salary "연봉", 
+        department_name "부서명", hire_date "입사일"
+from    employees e, departments d
+where   hire_date in (select  max(hire_date)
+                      from    employees)
+and     e.department_id= d.department_id;           
+
+
+-- 문제 7
+-- 평균연봉(salary)이 가장 높은 부서 직원들의 직원번호(employee_id), 이름(firt_name), 성(last_name)과  업무(job_title), 연봉(salary)을 조회하시오.
 
 
