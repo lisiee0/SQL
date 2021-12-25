@@ -64,6 +64,23 @@ and     e.department_id= d.department_id;
 
 
 -- 문제 7
--- 평균연봉(salary)이 가장 높은 부서 직원들의 직원번호(employee_id), 이름(firt_name), 성(last_name)과  업무(job_title), 연봉(salary)을 조회하시오.
+select  e.employee_id "직원번호", e.first_name||' '||e.last_name "이름", 
+        j.job_title "업무명", e.salary "연봉"
+from    (select  rownum rno,
+                 department_id, salary
+         from    (select  department_id, avg(salary) salary
+                  from    employees
+                  group by department_id
+                  order by salary desc) o) r,
+        employees e,
+        jobs j        
+where   e.job_id= j.job_id
+and     e.department_id= r.department_id
+and     r.rno= 1;
+
+
+-- 문제 8
+
+
 
 
