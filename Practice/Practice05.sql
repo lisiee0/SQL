@@ -80,7 +80,17 @@ and     r.rno= 1;
 
 
 -- 문제 8
+-- 평균 급여(salary)가 가장 높은 부서는? 
 
 
 
+
+select d.department_name, salary
+from (select  department_id, avg(salary) salary
+      from    employees
+      group by department_id
+      order by salary desc) o,
+      departments d
+where o.department_id= d.department_id
+and   
 
