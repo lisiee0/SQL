@@ -80,7 +80,7 @@ and     r.rno= 1;
 
 
 -- 문제 8
-select  department_name
+select  department_name "부서명"
 from    (select  rownum rno,
                  department_id, salary
          from    (select  department_id, avg(salary) salary
