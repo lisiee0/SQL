@@ -80,17 +80,19 @@ and     r.rno= 1;
 
 
 -- 문제 8
--- 평균 급여(salary)가 가장 높은 부서는? 
+select  department_name
+from    (select  rownum rno,
+                 department_id, salary
+         from    (select  department_id, avg(salary) salary
+                  from    employees
+                  group by department_id
+                  order by salary desc)o )r,
+        departments d
+where   r.department_id= d.department_id
+and     r.rno= 1;
 
 
+-- 문제 9
 
 
-select d.department_name, salary
-from (select  department_id, avg(salary) salary
-      from    employees
-      group by department_id
-      order by salary desc) o,
-      departments d
-where o.department_id= d.department_id
-and   
-
+      
