@@ -1,3 +1,7 @@
+/********************
+*     초기화        
+********************/
+
 -- 기존 SEQUENCE 삭제
 drop sequence seq_book_id;
 drop sequence seq_author_id;
@@ -17,8 +21,17 @@ increment by 1
 start with 1
 nocache;
 
+/***************************************/
+
+-- 확인용
+select * from author;
+select * from book;
+
 -- SEQUENCE 조회 --> 2개 생성되었는지 확인
 select * from user_sequences;
+
+/*****************************************/
+
 
 -- author, book 테이블 생성
 create table author(
@@ -102,4 +115,9 @@ where   b.author_id= a.author_id;
 
 
 commit;
+
+
+rollback;              
+
+
 
