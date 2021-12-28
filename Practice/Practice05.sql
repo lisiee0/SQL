@@ -93,6 +93,25 @@ and     r.rno= 1;
 
 
 -- 문제 9
+select  r.region_name "지역이름"
+from    (select  rownum rno,
+                 region_name, salary
+         from    (select  region_name, avg(salary) salary
+                  from    employees e, departments d, locations l, countries c, regions r
+                  where   e.department_id= d.department_id
+                  and     d.location_id= l.location_id
+                  and     l.country_id= c.country_id
+                  and     c.region_id= r.region_id
+                  group by region_name
+                  order by salary desc)o )r
+where   r.rno= 1;                  
 
+     
+ 
+
+
+
+-- 문제 10
+-- 평균 급여(salary)가 가장 높은 업무는? job_title
 
       
