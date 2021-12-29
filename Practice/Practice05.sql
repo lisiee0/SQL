@@ -107,11 +107,16 @@ from    (select  rownum rno,
 where   r.rno= 1;                  
 
      
- 
-
-
-
 -- 문제 10
--- 평균 급여(salary)가 가장 높은 업무는? job_title
+select  job_title "업무명"
+from    (select  rownum rno,
+                 job_title, salary
+         from    (select  job_title, avg(salary) salary
+                  from    employees e, jobs j
+                  where   e.job_id= j.job_id
+                  group by job_title
+                  order by salary desc) o) r
+where   r.rno= 1;                  
+
 
       
